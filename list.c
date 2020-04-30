@@ -111,38 +111,47 @@ Status add_unique(List_ptr list, int value)
   return add_to_end(list, value);
 }
 
-Status remove_from_start(List_ptr list)
+Status remove_from_empty_list(Node_ptr node)
 {
-  if (list->head == NULL)
+  if (node == NULL)
   {
     return Failure;
   }
-  Node_ptr second_node = list->head->next;
-  list->head = second_node;
-  list->count--;
   return Success;
+}
+
+Status remove_from_start(List_ptr list)
+{
+  if (remove_from_empty_list(list->head))
+  {
+    Node_ptr second_node = list->head->next;
+    list->head = second_node;
+    list->count--;
+    return Success;
+  }
+  return Failure;
 }
 
 Status remove_from_end(List_ptr list)
 {
   int count = 0;
   Node_ptr p_walk = list->head;
-  if (list->last == NULL)
+  if (remove_from_empty_list(list->head))
   {
-    return Failure;
-  }
-  while (p_walk != NULL)
-  {
-    if (count == list->count - 1)
+    while (p_walk != NULL)
     {
-      p_walk->next = NULL;
-      list->last = p_walk;
-      list->count--;
+      if (count == list->count - 1)
+      {
+        p_walk->next = NULL;
+        list->last = p_walk;
+        list->count--;
+      }
+      p_walk = p_walk->next;
+      count++;
     }
-    p_walk = p_walk->next;
-    count++;
+    return Success;
   }
-  return Success;
+  return Failure;
 }
 
 Status remove_at(List_ptr list, int position)
