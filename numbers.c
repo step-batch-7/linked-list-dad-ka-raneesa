@@ -68,6 +68,11 @@ void do_operation(List_ptr list, char option)
   case 'f':
     status = remove_from_end(list);
     break;
+
+  case 'g':
+    read_value(INPUT_TEXT_FOR_POSITION, &position);
+    status = remove_at(list, position);
+    break;
   }
   display_result(status);
   display(list);

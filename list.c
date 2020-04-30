@@ -142,3 +142,30 @@ Status remove_from_end(List_ptr list)
   }
   return Success;
 }
+
+Status remove_at(List_ptr list, int position)
+{
+  Node_ptr first_node = NULL;
+  Node_ptr second_node = list->head;
+  int count = 0;
+  while (count <= list->count)
+  {
+    if (count == position - 1)
+    {
+      if (position != 1)
+      {
+        first_node->next = second_node->next;
+        list->count--;
+      }
+      else
+      {
+        remove_from_start(list);
+      }
+      return Success;
+    }
+    first_node = second_node;
+    second_node = second_node->next;
+    count++;
+  }
+  return Failure;
+}
