@@ -18,28 +18,61 @@
 (l) display the list of numbers\n\
 (m) exit\n\n\
 Please enter the alphabet of the operation you would like to perform\n"
+#define INPUT_TEXT_FOR_VALUE "Please enter a number:"
 
 void read_option(char *option);
-void getting_options(List_ptr list);
-void do_operation();
+void do_operation_by_getting_option(List_ptr list);
+void do_operation(List_ptr list, char option);
+void read_value(char *text, int *value);
+void display_result(unsigned int status);
+
+void read_value(char *text, int *value)
+{
+  printf("%s\n", text);
+  scanf("%d", value);
+}
 
 void do_operation(List_ptr list, char option)
 {
+  int value = 0;
+  unsigned int status;
+  switch (option)
+  {
+  case 'a':
+    read_value(INPUT_TEXT_FOR_VALUE, &value);
+    status = add_to_end(list, value);
+    break;
+  }
+  display_result(status);
+}
+
+void display_result(unsigned int status)
+{
+  if (status == 1)
+  {
+    printf("Completed\n\n");
+  }
+  else
+  {
+    printf("Failed\n\n");
+  }
 }
 
 void read_option(char *option)
 {
   printf("%s", MAIN_MENU);
-  scanf("%c", option);
+  *option = getchar();
 }
 
-void getting_options(List_ptr list)
+void do_operation_by_getting_option(List_ptr list)
 {
   char option;
   read_option(&option);
   while (option != 'm')
   {
     do_operation(list, option);
+    while ((getchar()) != '\n')
+      ;
     read_option(&option);
   }
 }
@@ -47,6 +80,6 @@ void getting_options(List_ptr list)
 int main(void)
 {
   List_ptr list = create_list();
-  getting_options(list);
+  do_operation_by_getting_option(list);
   return 0;
 }
