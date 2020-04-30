@@ -31,18 +31,25 @@ Node_ptr create_node(int value)
   return new_node;
 }
 
-Status add_to_end(List_ptr list, int value)
+Status add_in_empty_list(List_ptr list, Node_ptr new_node)
 {
-  Node_ptr new_node = create_node(value);
   if (list->head == NULL)
   {
     list->head = new_node;
+    list->last = new_node;
+    return Success;
   }
-  else
+  return Failure;
+}
+
+Status add_to_end(List_ptr list, int value)
+{
+  Node_ptr new_node = create_node(value);
+  if (!add_in_empty_list(list, new_node))
   {
     list->last->next = new_node;
+    list->last = new_node;
   }
-  list->last = new_node;
   list->count++;
   return Success;
 }
@@ -50,12 +57,7 @@ Status add_to_end(List_ptr list, int value)
 Status add_to_start(List_ptr list, int value)
 {
   Node_ptr new_node = create_node(value);
-  if (list->head == NULL)
-  {
-    list->head = new_node;
-    list->last = new_node;
-  }
-  else
+  if (!add_in_empty_list(list, new_node))
   {
     Node_ptr start_node = list->head;
     list->head = new_node;
