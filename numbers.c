@@ -53,6 +53,10 @@ void do_operation(List_ptr list, char option)
     read_value(INPUT_TEXT_FOR_POSITION, &position);
     status = insert_at(list, value, position);
     break;
+  case 'd':
+    read_value(INPUT_TEXT_FOR_NUMBER, &value);
+    status = add_unique(list, value);
+    break;
   }
   display_result(status);
   display(list);
