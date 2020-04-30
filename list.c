@@ -4,12 +4,14 @@
 
 void display(List_ptr list)
 {
+  printf("List is : ");
   Node_ptr p_walk = list->head;
   while (p_walk != NULL)
   {
     printf("%d ", p_walk->value);
     p_walk = p_walk->next;
   }
+  printf("\n\n");
 }
 
 List_ptr create_list(void)
@@ -47,5 +49,18 @@ Status add_to_end(List_ptr list, int value)
 
 Status add_to_start(List_ptr list, int value)
 {
+  Node_ptr new_node = create_node(value);
+  if (list->head == NULL)
+  {
+    list->head = new_node;
+    list->last = new_node;
+  }
+  else
+  {
+    Node_ptr start_node = list->head;
+    list->head = new_node;
+    list->head->next = start_node;
+  }
+  list->count++;
   return Success;
 }

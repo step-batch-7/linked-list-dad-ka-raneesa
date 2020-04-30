@@ -48,6 +48,7 @@ void do_operation(List_ptr list, char option)
     break;
   }
   display_result(status);
+  display(list);
 }
 
 void display_result(unsigned int status)
@@ -85,6 +86,5 @@ int main(void)
 {
   List_ptr list = create_list();
   do_operation_by_getting_option(list);
-  display(list);
   return 0;
 }
