@@ -42,6 +42,10 @@ void do_operation(List_ptr list, char option)
     read_value(INPUT_TEXT_FOR_VALUE, &value);
     status = add_to_end(list, value);
     break;
+  case 'b':
+    read_value(INPUT_TEXT_FOR_VALUE, &value);
+    status = add_to_start(list, value);
+    break;
   }
   display_result(status);
 }
@@ -81,5 +85,6 @@ int main(void)
 {
   List_ptr list = create_list();
   do_operation_by_getting_option(list);
+  display(list);
   return 0;
 }
