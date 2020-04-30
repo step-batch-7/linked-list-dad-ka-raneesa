@@ -44,19 +44,25 @@ void do_operation(List_ptr list, char option)
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = add_to_end(list, value);
     break;
+
   case 'b':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = add_to_start(list, value);
     break;
+
   case 'c':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     read_value(INPUT_TEXT_FOR_POSITION, &position);
     status = insert_at(list, value, position);
     break;
+
   case 'd':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = add_unique(list, value);
     break;
+
+  case 'e':
+    status = remove_from_start(list);
   }
   display_result(status);
   display(list);

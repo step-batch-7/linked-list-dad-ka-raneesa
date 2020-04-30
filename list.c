@@ -108,3 +108,15 @@ Status add_unique(List_ptr list, int value)
   }
   return add_to_end(list, value);
 }
+
+Status remove_from_start(List_ptr list)
+{
+  if (list->head == NULL)
+  {
+    return Failure;
+  }
+  Node_ptr second_node = list->head->next;
+  list->head = second_node;
+  list->count--;
+  return Success;
+}
