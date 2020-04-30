@@ -18,7 +18,8 @@
 (l) display the list of numbers\n\
 (m) exit\n\n\
 Please enter the alphabet of the operation you would like to perform\n"
-#define INPUT_TEXT_FOR_VALUE "Please enter a number:"
+#define INPUT_TEXT_FOR_NUMBER "Please enter a number:"
+#define INPUT_TEXT_FOR_POSITION "Please enter position:"
 
 void read_option(char *option);
 void do_operation_by_getting_option(List_ptr list);
@@ -35,16 +36,22 @@ void read_value(char *text, int *value)
 void do_operation(List_ptr list, char option)
 {
   int value = 0;
+  int position = 0;
   unsigned int status;
   switch (option)
   {
   case 'a':
-    read_value(INPUT_TEXT_FOR_VALUE, &value);
+    read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = add_to_end(list, value);
     break;
   case 'b':
-    read_value(INPUT_TEXT_FOR_VALUE, &value);
+    read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = add_to_start(list, value);
+    break;
+  case 'c':
+    read_value(INPUT_TEXT_FOR_NUMBER, &value);
+    read_value(INPUT_TEXT_FOR_POSITION, &position);
+    status = insert_at(list, value, position);
     break;
   }
   display_result(status);

@@ -64,3 +64,33 @@ Status add_to_start(List_ptr list, int value)
   list->count++;
   return Success;
 }
+
+Status insert_at(List_ptr list, int value, int position)
+{
+  Node_ptr new_node = create_node(value);
+  Node_ptr first_node = NULL;
+  Node_ptr second_node = list->head;
+  int count = 1;
+  while (count <= list->count)
+  {
+    if (count == position)
+    {
+      if (count == 1)
+      {
+        list->head = new_node;
+        list->head->next = second_node;
+      }
+      else
+      {
+        first_node->next = new_node;
+        new_node->next = second_node;
+      }
+      list->count++;
+      return Success;
+    }
+    first_node = second_node;
+    second_node = second_node->next;
+    count++;
+  }
+  return Failure;
+}
