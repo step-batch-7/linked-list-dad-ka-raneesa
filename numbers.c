@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "list.h"
 
 #define MAIN_MENU "Main Menu\n\
 ---------\n\
@@ -18,8 +19,34 @@
 (m) exit\n\n\
 Please enter the alphabet of the operation you would like to perform\n"
 
-int main(void)
+void read_option(char *option);
+void getting_options(List_ptr list);
+void do_operation();
+
+void do_operation(List_ptr list, char option)
+{
+}
+
+void read_option(char *option)
 {
   printf("%s", MAIN_MENU);
+  scanf("%c", option);
+}
+
+void getting_options(List_ptr list)
+{
+  char option;
+  read_option(&option);
+  while (option != 'm')
+  {
+    do_operation(list, option);
+    read_option(&option);
+  }
+}
+
+int main(void)
+{
+  List_ptr list = create_list();
+  getting_options(list);
   return 0;
 }
