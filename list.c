@@ -120,3 +120,24 @@ Status remove_from_start(List_ptr list)
   list->count--;
   return Success;
 }
+
+Status remove_from_end(List_ptr list)
+{
+  int count = 0;
+  Node_ptr p_walk = list->head;
+  if (list->last == NULL)
+  {
+    return Failure;
+  }
+  while (p_walk != NULL)
+  {
+    if (count < list->count - 1)
+    {
+      p_walk->next = NULL;
+      list->last = p_walk;
+      list->count--;
+    }
+    p_walk = p_walk->next;
+  }
+  return Success;
+}
