@@ -63,9 +63,11 @@ void do_operation(List_ptr list, char option)
 
   case 'e':
     status = remove_from_start(list);
+    break;
 
   case 'f':
     status = remove_from_end(list);
+    break;
   }
   display_result(status);
   display(list);

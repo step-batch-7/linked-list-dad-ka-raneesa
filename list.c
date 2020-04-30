@@ -131,13 +131,14 @@ Status remove_from_end(List_ptr list)
   }
   while (p_walk != NULL)
   {
-    if (count < list->count - 1)
+    if (count == list->count - 1)
     {
       p_walk->next = NULL;
       list->last = p_walk;
       list->count--;
     }
     p_walk = p_walk->next;
+    count++;
   }
   return Success;
 }
