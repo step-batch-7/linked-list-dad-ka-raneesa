@@ -47,5 +47,6 @@ void destroy_list(List_ptr); // Frees the elements and the list structure from m
 Status add_in_empty_list(List_ptr, Node_ptr new_node);
 Status remove_from_empty_list(Node_ptr);
 Status remove_number_at(List_ptr, int position);
+int search_position(List_ptr, int value);
 
 #endif

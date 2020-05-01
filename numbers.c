@@ -73,6 +73,11 @@ void do_operation(List_ptr list, char option)
     read_value(INPUT_TEXT_FOR_POSITION, &position);
     status = remove_at(list, position);
     break;
+
+  case 'h':
+    read_value(INPUT_TEXT_FOR_NUMBER, &value);
+    status = remove_first_occurrence(list, value);
+    break;
   }
   display_result(status);
   display(list);
