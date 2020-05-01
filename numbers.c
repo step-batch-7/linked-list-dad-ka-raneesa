@@ -22,7 +22,6 @@ Please enter the alphabet of the operation you would like to perform\n"
 #define INPUT_TEXT_FOR_POSITION "Please enter position:"
 
 void read_option(char *option);
-void do_operation_by_getting_option(List_ptr list);
 void do_operation(List_ptr list, char option);
 void read_value(char *text, int *value);
 void display_result(unsigned int status);
@@ -96,7 +95,9 @@ void do_operation(List_ptr list, char option)
   case 'k':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = check_is_exist(list, value);
-    display_result(status);
+    if (status)
+      printf("\nYes\n\n");
+    printf("\nNo\n\n");
     break;
 
   case 'l':
@@ -109,7 +110,7 @@ void display_result(unsigned int status)
 {
   if (status == 1)
   {
-    printf("\nCompleted\n\n");
+    printf("\nSucceed\n\n");
   }
   else
   {
@@ -123,8 +124,9 @@ void read_option(char *option)
   *option = getchar();
 }
 
-void do_operation_by_getting_option(List_ptr list)
+int main(void)
 {
+  List_ptr list = create_list();
   char option;
   read_option(&option);
   while (option != 'm')
@@ -134,11 +136,5 @@ void do_operation_by_getting_option(List_ptr list)
       ;
     read_option(&option);
   }
-}
-
-int main(void)
-{
-  List_ptr list = create_list();
-  do_operation_by_getting_option(list);
   return 0;
 }
