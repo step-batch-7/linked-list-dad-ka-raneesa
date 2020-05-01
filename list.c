@@ -138,16 +138,12 @@ Status remove_from_start(List_ptr list)
 
 Status remove_from_end(List_ptr list)
 {
-  int count = 1;
-  Node_ptr p_walk = list->head;
-  if (remove_from_empty_list(list->head))
+  if (list->count != 1 && list->count != 0)
   {
+    int count = 1;
+    Node_ptr p_walk = list->head;
     while (p_walk != NULL)
     {
-      if (list->count == 1)
-      {
-        remove_from_start(list);
-      }
       if (count == list->count - 1)
       {
         p_walk->next = NULL;
@@ -159,7 +155,7 @@ Status remove_from_end(List_ptr list)
     }
     return Success;
   }
-  return Failure;
+  return remove_from_start(list);
 }
 
 Status remove_number_at(List_ptr list, int position)
