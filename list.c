@@ -239,3 +239,16 @@ Status remove_all_occurrences(List_ptr list, int value)
   }
   return Failure;
 }
+
+void destroy_list(List_ptr list)
+{
+  Node *p_walk = list->head;
+  Node *node_to_free = NULL;
+  while (p_walk != NULL)
+  {
+    node_to_free = p_walk;
+    p_walk = p_walk->next;
+    free(node_to_free);
+  }
+  free(list);
+}

@@ -97,7 +97,8 @@ void do_operation(List_ptr list, char option)
     status = check_is_exist(list, value);
     if (status)
       printf("\nYes\n\n");
-    printf("\nNo\n\n");
+    else
+      printf("\nNo\n\n");
     break;
 
   case 'l':
