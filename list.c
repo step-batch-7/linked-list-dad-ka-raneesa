@@ -69,32 +69,28 @@ Status add_to_start(List_ptr list, int value)
 
 Status insert_at(List_ptr list, int value, int position)
 {
-  Node_ptr first_node = NULL;
-  Node_ptr second_node = list->head;
-  int count = 0;
-
-  while (count <= list->count)
+  if (position != 1)
   {
-    if (count == position - 1)
+    Node_ptr first_node = NULL;
+    Node_ptr second_node = list->head;
+    int count = 1;
+
+    while (count <= list->count)
     {
-      if (position != 1)
+      if (count == position)
       {
         Node_ptr new_node = create_node(value);
         first_node->next = new_node;
         new_node->next = second_node;
         list->count++;
+        return Success;
       }
-      else
-      {
-        add_to_start(list, value);
-      }
-      return Success;
+      first_node = second_node;
+      second_node = second_node->next;
+      count++;
     }
-    first_node = second_node;
-    second_node = second_node->next;
-    count++;
   }
-  return Failure;
+  return add_to_start(list, value);
 }
 
 Status add_unique(List_ptr list, int value)
@@ -162,10 +158,10 @@ Status remove_number_at(List_ptr list, int position)
 {
   Node_ptr first_node = NULL;
   Node_ptr second_node = list->head;
-  int count = 0;
-  while (count < list->count)
+  int count = 1;
+  while (count <= list->count)
   {
-    if (count == position - 1)
+    if (count == position)
     {
       first_node->next = second_node->next;
       list->count--;
