@@ -43,60 +43,71 @@ void do_operation(List_ptr list, char option)
   case 'a':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = add_to_end(list, value);
+    display_result(status);
     break;
 
   case 'b':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = add_to_start(list, value);
+    display_result(status);
     break;
 
   case 'c':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     read_value(INPUT_TEXT_FOR_POSITION, &position);
     status = insert_at(list, value, position);
+    display_result(status);
     break;
 
   case 'd':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = add_unique(list, value);
+    display_result(status);
     break;
 
   case 'e':
     status = remove_from_start(list);
+    display_result(status);
     break;
 
   case 'f':
     status = remove_from_end(list);
+    display_result(status);
     break;
 
   case 'g':
     read_value(INPUT_TEXT_FOR_POSITION, &position);
     status = remove_at(list, position);
+    display_result(status);
     break;
 
   case 'h':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = remove_first_occurrence(list, value);
+    display_result(status);
     break;
 
   case 'i':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = remove_all_occurrences(list, value);
+    display_result(status);
+    break;
+
+  case 'l':
+    display(list);
     break;
   }
-  display_result(status);
-  display(list);
 }
 
 void display_result(unsigned int status)
 {
   if (status == 1)
   {
-    printf("Completed\n\n");
+    printf("\nCompleted\n\n");
   }
   else
   {
-    printf("Failed\n\n");
+    printf("\nFailed\n\n");
   }
 }
 
