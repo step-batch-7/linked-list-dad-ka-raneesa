@@ -93,6 +93,12 @@ void do_operation(List_ptr list, char option)
     display_result(status);
     break;
 
+  case 'k':
+    read_value(INPUT_TEXT_FOR_NUMBER, &value);
+    status = check_is_exist(list, value);
+    display_result(status);
+    break;
+
   case 'l':
     display(list);
     break;

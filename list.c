@@ -213,16 +213,26 @@ Status remove_first_occurrence(List_ptr list, int value)
   return Failure;
 }
 
-Status remove_all_occurrences(List_ptr list, int value)
+Status check_is_exist(List_ptr list, int value)
 {
-  int count = 0;
   int position = search_position(list, value);
   if (position != -1)
   {
+    return Success;
+  }
+  return Failure;
+}
+
+Status remove_all_occurrences(List_ptr list, int value)
+{
+  int count = 0;
+  int position;
+  if (check_is_exist(list, value))
+  {
     while (count < list->count)
     {
-      remove_at(list, position);
       position = search_position(list, value);
+      remove_at(list, position);
       if (position == -1)
         return Success;
     }
