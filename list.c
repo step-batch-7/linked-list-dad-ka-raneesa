@@ -212,3 +212,20 @@ Status remove_first_occurrence(List_ptr list, int value)
   }
   return Failure;
 }
+
+Status remove_all_occurrences(List_ptr list, int value)
+{
+  int count = 0;
+  int position = search_position(list, value);
+  if (position != -1)
+  {
+    while (count < list->count)
+    {
+      remove_at(list, position);
+      position = search_position(list, value);
+      if (position == -1)
+        return Success;
+    }
+  }
+  return Failure;
+}

@@ -78,6 +78,11 @@ void do_operation(List_ptr list, char option)
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = remove_first_occurrence(list, value);
     break;
+
+  case 'i':
+    read_value(INPUT_TEXT_FOR_NUMBER, &value);
+    status = remove_all_occurrences(list, value);
+    break;
   }
   display_result(status);
   display(list);
