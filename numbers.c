@@ -92,6 +92,11 @@ void do_operation(List_ptr list, char option)
     display_result(status);
     break;
 
+  case 'j':
+    status = clear_list(list);
+    display_result(status);
+    break;
+
   case 'k':
     read_value(INPUT_TEXT_FOR_NUMBER, &value);
     status = check_is_exist(list, value);

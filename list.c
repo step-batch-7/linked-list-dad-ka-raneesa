@@ -240,10 +240,22 @@ Status remove_all_occurrences(List_ptr list, int value)
   return Failure;
 }
 
+Status clear_list(List_ptr list)
+{
+  if (list->count != 0)
+  {
+    list->head = NULL;
+    list->last = NULL;
+    list->count = 0;
+    return Success;
+  }
+  return Failure;
+}
+
 void destroy_list(List_ptr list)
 {
-  Node *p_walk = list->head;
-  Node *node_to_free = NULL;
+  Node_ptr p_walk = list->head;
+  Node_ptr node_to_free = NULL;
   while (p_walk != NULL)
   {
     node_to_free = p_walk;
