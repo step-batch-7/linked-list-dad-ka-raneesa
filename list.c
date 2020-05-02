@@ -155,20 +155,15 @@ Status remove_from_end(List_ptr list)
 Status remove_number_at(List_ptr list, int position)
 {
   Prev_Current_Pair pair = {NULL, list->head};
-  // Node_ptr first_node = NULL;
-  // Node_ptr second_node = list->head;
   int count = 1;
   while (count <= list->count)
   {
     if (count == position)
     {
-      // first_node->next = second_node->next;
       pair.prev->next = pair.current->next;
       list->count--;
       return Success;
     }
-    // first_node = second_node;
-    // second_node = second_node->next;
     pair.prev = pair.current;
     pair.current = pair.current->next;
     count++;
