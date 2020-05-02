@@ -71,22 +71,20 @@ Status insert_at(List_ptr list, int value, int position)
 {
   if (position != 1)
   {
-    Node_ptr first_node = NULL;
-    Node_ptr second_node = list->head;
+    Prev_Current_Pair pair = {NULL, list->head};
     int count = 1;
-
     while (count <= list->count)
     {
       if (count == position)
       {
         Node_ptr new_node = create_node(value);
-        first_node->next = new_node;
-        new_node->next = second_node;
+        pair.prev->next = new_node;
+        new_node->next = pair.current;
         list->count++;
         return Success;
       }
-      first_node = second_node;
-      second_node = second_node->next;
+      pair.prev = pair.current;
+      pair.current = pair.current->next;
       count++;
     }
   }
@@ -120,12 +118,12 @@ Status remove_from_start(List_ptr list)
 {
   if (remove_from_empty_list(list->head))
   {
-    Node_ptr second_node = list->head->next;
+    Node_ptr next_node = list->head->next;
     if (list->count == 1)
     {
-      list->last = second_node;
+      list->last = next_node;
     }
-    list->head = second_node;
+    list->head = next_node;
     list->count--;
     return Success;
   }
@@ -156,19 +154,23 @@ Status remove_from_end(List_ptr list)
 
 Status remove_number_at(List_ptr list, int position)
 {
-  Node_ptr first_node = NULL;
-  Node_ptr second_node = list->head;
+  Prev_Current_Pair pair = {NULL, list->head};
+  // Node_ptr first_node = NULL;
+  // Node_ptr second_node = list->head;
   int count = 1;
   while (count <= list->count)
   {
     if (count == position)
     {
-      first_node->next = second_node->next;
+      // first_node->next = second_node->next;
+      pair.prev->next = pair.current->next;
       list->count--;
       return Success;
     }
-    first_node = second_node;
-    second_node = second_node->next;
+    // first_node = second_node;
+    // second_node = second_node->next;
+    pair.prev = pair.current;
+    pair.current = pair.current->next;
     count++;
   }
   return Failure;

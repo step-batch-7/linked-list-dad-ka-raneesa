@@ -116,7 +116,7 @@ void display_result(unsigned int status)
 {
   if (status == 1)
   {
-    printf("\nSucceed\n\n");
+    printf("\nDone\n\n");
   }
   else
   {
