@@ -191,7 +191,7 @@ Status remove_at(List_ptr list, int position)
 int search_position(List_ptr list, int value)
 {
   Node_ptr p_walk = list->head;
-  int position = 1;
+  int position = 0;
   while (p_walk != NULL)
   {
     if (p_walk->value == value)
