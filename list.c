@@ -245,7 +245,10 @@ Status clear_list(List_ptr list)
 {
   while (list->count != 0)
   {
-    return remove_from_end(list);
+    if(list->count == 1){
+      return remove_from_end(list);
+    }
+    remove_from_end(list);
   }
   return Failure;
 }
