@@ -159,8 +159,8 @@ Status remove_from_end(List_ptr list)
 Status remove_number_at(List_ptr list, int position)
 {
   Prev_Current_Pair pair = {NULL, list->head};
-  int count = 1;
-  while (count <= list->count)
+  int count = 0;
+  while (count < list->count)
   {
     if (count == position)
     {
@@ -177,11 +177,11 @@ Status remove_number_at(List_ptr list, int position)
 
 Status remove_at(List_ptr list, int position)
 {
-  if (position == 1)
+  if (position == 0)
   {
     return remove_from_start(list);
   }
-  if (position == list->count)
+  if (position == list->count - 1)
   {
     return remove_from_end(list);
   }
