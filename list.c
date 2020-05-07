@@ -243,12 +243,23 @@ Status remove_all_occurrences(List_ptr list, int value)
 
 Status clear_list(List_ptr list)
 {
-  Status status = remove_from_end(list);
-  if (list->count == 0)
-  {
-    return status;
+  if(list->head == NULL){
+    return Failure;
   }
-  return clear_list(list);
+  
+  Node_ptr p_walk = list->head;
+  Node_ptr node_to_free = NULL;
+
+  while(p_walk != NULL){
+    node_to_free = p_walk;
+    p_walk = p_walk->next;
+    free(node_to_free);
+  }
+
+  list->head = NULL;
+  list->last = NULL;
+  list->count = 0;
+  return Success;
 }
 
 void destroy_list(List_ptr list)
