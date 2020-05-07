@@ -241,13 +241,14 @@ Status remove_all_occurrences(List_ptr list, int value)
   return Failure;
 }
 
-  Status clear_list(List_ptr list)
+Status clear_list(List_ptr list)
 {
-  Status status = Failure;
-  while(list->count > 0){
-    status = remove_from_end(list);
+  Status status = remove_from_end(list);
+  if (list->count == 0)
+  {
+    return status;
   }
-  return status;
+  return clear_list(list);
 }
 
 void destroy_list(List_ptr list)
